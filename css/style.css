@@ -1,10 +1,10 @@
-@import "@fontsource-variable/inter";
-@import "tailwindcss";
+@import '@fontsource-variable/inter';
+@import 'tailwindcss';
 
-@theme {  
-  --font-sans: "Inter Variable", serif;
+@theme {
+	--font-sans: 'Inter Variable', serif;
 }
 
-[x-cloak] { 
-  display: none !important;
+[x-cloak] {
+	display: none !important;
 }

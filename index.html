@@ -1,18 +1,103 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<title>Riley Siemens - Since 1990</title>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
-		
-		<link href="css/style.css" rel="stylesheet">
-		<script type="module" src="js/alpine.js"></script>
+
+		<link href="/css/style.css" rel="stylesheet" />
+		<script type="module" src="/js/alpine.js"></script>
 	</head>
 
-	<body class="font-sans antialiased" x-data="{ name: 'Riley Siemens' }">
-		<header class="p-6 flex gap-6 items-start">
-			<h1 class="text-6xl font-black " x-text="name"></h1>
+	<body class="font-sans antialiased" x-data="homepage">
+		<header class="border-bottom mx-6 flex items-baseline gap-6 border-b pt-6 pb-2">
+			<div class="size-15 border border-black"></div>
+			<h1 class="text-3xl font-black lg:text-6xl">Riley Siemens</h1>
+			<ul class="hidden items-baseline gap-6 sm:flex">
+				<li><a href="#about" class="text-xl font-black hover:underline">About</a></li>
+				<li><a href="#photos" class="text-xl font-black hover:underline">Photos</a></li>
+				<li><a href="#recipes" class="text-xl font-black hover:underline">Recipes</a></li>
+			</ul>
+			<div class="grow"></div>
+			<button class="flex size-10 items-center justify-center sm:hidden">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke-width="1.5"
+					stroke="currentColor"
+					class="size-6"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+					/>
+				</svg>
+			</button>
 		</header>
+
+		<div id="about" class="max-w-3xl space-y-4 p-6">
+			<p>Hello! I'm Riley.</p>
+			<p>You might notice this website doesn't have a lot of useful or interesting content on it.</p>
+			<p>I have no argument against that.</p>
+			<p>
+				It's become a place for me to keep and share <a href="#recipes" class="underline">recipes</a> (like my
+				pizza dough recipe, for example), and a list of all the
+				<a href="#video-games" class="underline">video games</a>
+				I've bought since 2017.
+			</p>
+			<p>
+				This is a good place to share my <a href="#photos" class="underline">photos</a>
+				seeing as I have no social media with which to broadcast my inanity.
+			</p>
+			<p>
+				But the main reason I have this domain is so I can have a custom email address like this:
+				<span class="flex items-baseline gap-0 whitespace-nowrap">
+					hi
+					<span class="after:content-['@']"></span>
+					rileysiemens
+					<span class="after:content-['.']"></span>
+					com
+				</span>
+			</p>
+			<p>Please enjoy!</p>
+			<img class="rounded-full border-2 border-gray-600 shadow" x-bind:src="gravatarUrl" />
+		</div>
+
+		<div class="p-6">
+			<h1 id="photos" class="text-6xl font-black">Photos</h1>
+			<div class="grid max-w-5xl grid-flow-row grid-cols-3 gap-1">
+				<template x-for="photo in photos">
+					<div
+						class="group aspect-square w-full cursor-pointer overflow-hidden overscroll-none"
+						x-on:click="enlargePhoto($event)"
+						x-data="{ show: false }"
+						x-intersect.once="show = true"
+					>
+						<img
+							class="transition-scale aspect-square w-full object-cover object-center duration-150 group-hover:scale-105"
+							x-bind:src="photo"
+							x-cloak
+							x-show="show"
+						/>
+					</div>
+				</template>
+			</div>
+			<div
+				class="fixed inset-0 flex items-center justify-center bg-white"
+				x-cloak
+				x-show="enlargedPhoto"
+				x-trap.noscroll="enlargedPhoto"
+				x-on:click="enlargedPhoto = null"
+			>
+				<img class="max-h-screen" x-bind:src="enlargedPhoto" alt="" />
+			</div>
+		</div>
+
+		<div class="p-6">
+			<h1 id="recipes" class="text-6xl font-black">Recipes</h1>
+		</div>
 	</body>
 </html>

@@ -1,9 +1,8 @@
 {
-    "name": "RileySiemens.com",
-    "short_name": "RileySiemens",
-    "start_url": ".",
-    "display": "standalone",
-    "background_color": "#fff",
-    "description": "The homepage of professional programmer Riley Siemens"
-  }
-  
+	"name": "RileySiemens.com",
+	"short_name": "RileySiemens",
+	"start_url": ".",
+	"display": "standalone",
+	"background_color": "#fff",
+	"description": "The professional homepage of professional programmer Riley Siemens, done professionally"
+}
