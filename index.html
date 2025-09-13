@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="bg-gray-800">
 	<head>
 		<title>Riley Siemens - Since 1990</title>
 		<meta charset="UTF-8" />
@@ -10,44 +10,74 @@
 		<script type="module" src="/js/alpine.js"></script>
 	</head>
 
-	<body class="font-sans antialiased" x-data="homepage">
-		<section>
-			<header class="mx-6 flex items-baseline gap-6 pt-6 pb-2">
-				<h1 class="text-3xl font-black lg:text-6xl">Riley Siemens</h1>
-			</header>
-		</section>
+	<body class="bg-gradient-to-b from-indigo-900 via-blue-950 to-emerald-950 font-sans antialiased" x-data="homepage">
+		<div class="absolute inset-x-0 top-[5vh] -z-0 flex items-center justify-center sm:top-[10vh]">
+			<p
+				class="mx-auto inline-block bg-gradient-to-b from-purple-700/50 via-blue-950 via-30% to-indigo-900/50 bg-clip-text font-mono text-[20rem] leading-tight font-bold whitespace-nowrap text-transparent select-none"
+			>
+				}{
+			</p>
+		</div>
 
-		<section>
-			<div class="max-w-3xl space-y-4 p-6">
-				<p>Hello! I'm Riley.</p>
+		<div class="absolute top-[-35vh] z-0 mx-auto h-screen w-screen md:top-[-30vh]">
+			<div class="h-96 rounded-full bg-purple-700/50 blur-3xl"></div>
+		</div>
+
+		<section class="relative z-10 pt-[37vh]">
+			<h1
+				class="text-center text-4xl font-black sm:text-6xl"
+				x-data="{ showHeading: false }"
+				x-init="setTimeout(() => showHeading = true, 350)"
+				x-cloak
+				x-show="showHeading"
+				x-transition.duration.500ms
+			>
+				<span class="text-purple-50/50">Welcome to</span><br />
+				<span class="text-purple-50/80">RileySiemens.com</span>
+			</h1>
+
+			<article
+				class="mx-auto mt-12 max-w-2xl space-y-4 p-4 text-lg text-purple-50 sm:p-0 md:mt-24"
+				x-data="{ showText: false }"
+				x-init="setTimeout(() => showText = true, 1000)"
+				x-cloak
+				x-show="showText"
+				x-transition.duration.500ms
+			>
+				<p class="text-2xl font-bold">Hi! 👋🏻 I'm Riley Siemens.</p>
+				<p>I'm a software developer who lives in Steinbach, Manitoba.</p>
 				<p>You might notice this website doesn't have a lot of useful or interesting content on it.</p>
-				<p>I have no argument against that.</p>
+				<p>I agree.</p>
 				<p>
-					It's become a place for me to keep and share <a href="#recipes" class="underline">recipes</a> (like
-					my pizza dough recipe, for example), and a list of all the
-					<a href="#video-games" class="underline">video games</a>
-					I've bought since 2017.
+					But since I don't have a social media account, this is the only place to share my
+					<a href="#photos" class="cursor-pointer font-medium underline">photos</a>.
 				</p>
 				<p>
-					This is a good place to share my <a href="#photos" class="underline">photos</a>
-					seeing as I have no social media with which to broadcast my inanity.
-				</p>
-				<p>
-					But the main reason I have this domain is so I can have a custom email address like this:
-					<span class="flex items-baseline gap-0 whitespace-nowrap">
+					However, the main reason I bought this domain is so I can have a custom email address like this:
+					<button
+						class="inline-flex cursor-pointer items-baseline gap-0 font-medium whitespace-nowrap underline"
+						x-on:click="contactMe()"
+					>
 						hi
 						<span class="after:content-['@']"></span>
 						rileysiemens
 						<span class="after:content-['.']"></span>
 						com
-					</span>
+					</button>
 				</p>
-				<p>Please enjoy!</p>
-				<img class="rounded-full border-2 border-gray-600 shadow" x-bind:src="gravatarUrl" />
-			</div>
+				<p>Please reach out if you have any suggestions for what you want to see on this website.</p>
+				<p>Peace!</p>
+				<img class="rounded-full border-2 border-indigo-600/50 shadow" x-bind:src="gravatarUrl" />
+			</article>
 		</section>
 
-		<div class="p-1 md:p-6">
+		<section
+			id="photos"
+			class="mt-12 p-1 md:mt-24 md:p-6"
+			x-data="{ hidden: true }"
+			x-bind:class="{ 'invisible': hidden }"
+			x-init="setTimeout(() => hidden = false, 1000);"
+		>
 			<div class="mx-auto grid max-w-5xl grid-flow-row grid-cols-3 gap-1 md:gap-2">
 				<template x-for="photo in photos">
 					<div
@@ -67,21 +97,21 @@
 				</template>
 			</div>
 			<div
-				class="fixed inset-0 flex items-center justify-center bg-black/40"
+				class="fixed inset-0 z-20 flex items-center justify-center bg-black/40"
 				x-cloak
 				x-show="enlargedPhoto"
 				x-trap.noscroll="enlargedPhoto"
 				x-on:click="enlargedPhoto = null"
 				x-transition.opacity
 			>
-				<div class="m-2 rounded-lg bg-white/50 p-2 backdrop-blur-md md:m-4 md:p-4">
+				<div class="rounded-lg bg-white/50 p-2 backdrop-blur-md md:m-4 md:p-4">
 					<img
-						class="max-h-[calc(100vh-2rem)] max-w-[calc(100vw-2rem)] object-contain md:max-h-[calc(100vh-4rem)] md:max-w-[calc(100vw-4rem)]"
+						class="mx-auto max-h-[calc(100vh-1rem)] max-w-[calc(100vw-1rem)] rounded md:max-h-[calc(100vh-4rem)] md:max-w-[calc(100vw-4rem)]"
 						x-bind:src="enlargedPhoto"
 						alt=""
 					/>
 				</div>
 			</div>
-		</div>
+		</section>
 	</body>
 </html>

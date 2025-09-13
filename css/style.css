@@ -1,8 +1,10 @@
 @import '@fontsource-variable/inter';
+@import '@fontsource/red-hat-mono/700.css';
 @import 'tailwindcss';
 
 @theme {
 	--font-sans: 'Inter Variable', serif;
+	--font-mono: 'Red Hat Mono', serif;
 }
 
 [x-cloak] {

@@ -12,6 +12,16 @@ document.addEventListener('alpine:init', () => {
 		photos: [],
 		enlargedPhoto: null,
 
+		get email() {
+			let first = 'hi'
+			let last = 'rileysiemens'
+			return `${first}@${last}.com`
+		},
+
+		get gravatarUrl() {
+			return `https://www.gravatar.com/avatar/${md5(this.email)}`
+		},
+
 		init: function () {
 			let url = `${this.baseUrl}tr:w-350,h-350,pr-true/`
 			this.photos.push(`${url}not-a-pipe.JPEG`)
@@ -24,13 +34,10 @@ document.addEventListener('alpine:init', () => {
 			this.photos.sort()
 		},
 
-		get gravatarUrl() {
-			let first = 'contact'
-			let last = 'rileysiemens'
-			let email = `${first}@${last}.com`
-			let hash = md5(email)
-
-			return `https://www.gravatar.com/avatar/${hash}`
+		contactMe: function () {
+			let link = document.createElement('a')
+			link.href = `mailto:${this.email}`
+			link.click()
 		},
 
 		enlargePhoto: function (e) {
