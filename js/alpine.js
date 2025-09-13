@@ -8,19 +8,19 @@ Alpine.plugin([focus, intersect])
 
 document.addEventListener('alpine:init', () => {
 	Alpine.data('homepage', () => ({
+		baseUrl: 'https://ik.imagekit.io/rileys/',
 		photos: [],
 		enlargedPhoto: null,
 
 		init: function () {
-			let url = 'https://ik.imagekit.io/rileys/'
-			let query = '?tr=w-350,h-350,fo-auto'
-			this.photos.push(`${url}not-a-pipe.JPEG${query}`)
+			let url = `${this.baseUrl}tr:w-350,h-350,pr-true/`
+			this.photos.push(`${url}not-a-pipe.JPEG`)
 
 			let ids = [
 				6290, 5133, 5122, 5109, 5006, 5005, 5004, 5002, 4988, 4961, 4945, 4925, 4917, 4859, 4740, 4726, 4722,
 				4714, 4707, 4691, 4687, 4684, 4527, 4257, 3709, 3399, 2387, 1853,
 			]
-			ids.forEach((id) => this.photos.push(`${url}IMG_${id}.JPEG${query}`))
+			ids.forEach((id) => this.photos.push(`${url}IMG_${id}.JPEG`))
 			this.photos.sort()
 		},
 
@@ -42,7 +42,8 @@ document.addEventListener('alpine:init', () => {
 
 			if (!img.src) return
 
-			this.enlargedPhoto = img.src.split('?')[0]
+			let imageId = img.src.substring(img.src.lastIndexOf('/') + 1)
+			this.enlargedPhoto = this.baseUrl + imageId
 		},
 	}))
 })
